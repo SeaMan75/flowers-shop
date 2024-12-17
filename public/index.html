@@ -5,6 +5,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Интернет-магазин Цветы</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="stylesheet" href="style/style.css"> <!-- Подключение файла стилей -->
 </head>
 
@@ -142,9 +146,6 @@
                                 <a href="flowers-in-basket.html">Цветы в корзине</a>
                             </li>
                             <li>
-                                <a href="tel:+1234567890"> +7 (495) 123-45-67</a>
-                            </li>
-                            <li>
                                 <a href="cart.html"><img src="images/cart.png" alt="Корзина"
                                         style="width: 32px; height: 32px;"></a>
                             </li>
@@ -156,36 +157,67 @@
             <div id="blocks-container" class="blocks-container"></div>
         </main>
         <aside class="right-aside">
-            <div id="current_date_time_block2">
-                <div>
-                    <img src="images/logo.png" alt="Логотип интернет-магазина цветов" class="logo">
-                </div>
-                <div id="time"></div>
+            <div class="contact-info">
+                <p>Москва, ул. Тверская, д. 7</p>
+                <p>Телефон: +7 (495) 462-28-32</p>
             </div>
-            <script type="text/javascript">
-                function zero_first_format(value) {
-                    if (value < 10) {
-                        value = '0' + value;
-                    }
-                    return value;
-                }
-
-                function date_time() {
-                    var current_datetime = new Date();
-                    var day = zero_first_format(current_datetime.getDate());
-                    var month = zero_first_format(current_datetime.getMonth() + 1);
-                    var year = current_datetime.getFullYear();
-                    var hours = zero_first_format(current_datetime.getHours());
-                    var minutes = zero_first_format(current_datetime.getMinutes());
-                    var seconds = zero_first_format(current_datetime.getSeconds());
-                    return day + "." + month + "." + year + "<br>" + hours + ":" + minutes + ":" + seconds;
-                }
-                setInterval(function () {
-                    document.getElementById('time').innerHTML = date_time();
-                }, 1000);
-            </script>
+            <div class="auth-form">
+                <h2>Авторизация</h2>
+                <form action="login.php" method="post">
+                    <label for="username">Логин:</label>
+                    <input type="text" id="username" name="username" required>
+                    <label for="password">Пароль:</label>
+                    <input type="password" id="password" name="password" required>
+                    <button type="submit">Войти</button>
+                </form>
+                <p>Нет аккаунта? <a href="#" data-toggle="modal" data-target="#registerModal">Регистрация</a></p>
+            </div>
         </aside>
     </div>
+    <!-- Модальное окно для регистрации -->
+    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="registerModalLabel">Регистрация</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form action="register.php" method="post">
+                        <div class="form-group">
+                            <label for="first_name">Имя:</label>
+                            <input type="text" class="form-control" id="first_name" name="first_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="last_name">Фамилия:</label>
+                            <input type="text" class="form-control" id="last_name" name="last_name" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-email">Email:</label>
+                            <input type="email" class="form-control" id="reg-email" name="email" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Телефон:</label>
+                            <input type="text" class="form-control" id="phone" name="phone">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Адрес:</label>
+                            <input type="text" class="form-control" id="address" name="address">
+                        </div>
+                        <div class="form-group">
+                            <label for="reg-password">Пароль:</label>
+                            <input type="password" class="form-control" id="reg-password" name="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             fetch('load_images.php')
