@@ -13,7 +13,7 @@ if ($conn->connect_error) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $product_id = $_POST['product_id'];
+    $flower_id = $_POST['flower_id'];
     $quantity = $_POST['quantity'];
     $total_price = $_POST['total_price'];
     $user_id = 1; // Пример, замените на реальный user_id
@@ -31,7 +31,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Вставка данных в таблицу order_details
     $sql = "INSERT INTO order_details (order_id, flower_id, quantity) VALUES (?, ?, ?)";
     $stmt = $conn->prepare($sql);
-    $stmt->bind_param("iii", $order_id, $product_id, $quantity);
+    $stmt->bind_param("iii", $order_id, $wlower_id, $quantity);
     $stmt->execute();
     $stmt->close();
 
