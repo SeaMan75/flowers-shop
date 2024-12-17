@@ -12,18 +12,31 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT id, IFNULL(name, '') AS name, IFNULL(description, '') AS description, IFNULL(price, '') AS price, IFNULL(image, '') AS image FROM flowers";
-$result = $conn->query($sql);
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $product_id = $_POST['product_id'];
+    $quantity = $_POST['quantity'];
+    $total_price = $_POST['total_price'];
+    $user_id = 1; // Пример, замените на реальный user_id
+    $order_date = date('Y-m-d H:i:s');
+    $status = 'Pending';
 
-$flowers = array();
-if ($result->num_rows > 0) {
-    while ($row = $result->fetch_assoc()) {
-        $flowers[] = $row;
-    }
+    // Вставка данных в таблицу orders
+    $sql = "INSERT INTO orders (user_id, order_date, total, status) VALUES (?, ?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("isds", $user_id, $order_date, $total_price, $status);
+    $stmt->execute();
+    $order_id = $stmt->insert_id;
+    $stmt->close();
+
+    // Вставка данных в таблицу order_details
+    $sql = "INSERT INTO order_details (order_id, flower_id, quantity) VALUES (?, ?, ?)";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("iii", $order_id, $product_id, $quantity);
+    $stmt->execute();
+    $stmt->close();
+
+    echo "Товар успешно добавлен в корзину!";
 }
 
 $conn->close();
-
-header('Content-Type: application/json');
-echo json_encode($flowers);
 ?>

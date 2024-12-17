@@ -217,6 +217,51 @@
         </div>
     </div>
 
+    <!-- Модальное окно для добавления в корзину -->
+    <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="cartModalLabel">Добавить в корзину</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="cartForm">
+                        <div class="form-group">
+                            <img id="productImage" src="" alt="Изображение товара" class="img-fluid">
+                        </div>
+                        <div class="form-group">
+                            <label for="productName">Название:</label>
+                            <p id="productName"></p>
+                        </div>
+                        <div class="form-group">
+                            <label for="productDescription">Описание:</label>
+                            <p id="productDescription"></p>
+                        </div>
+                        <div class="form-group">
+                            <label for="productPrice">Цена:</label>
+                            <p id="productPrice"></p>
+                        </div>
+                        <div class="form-group">
+                            <label for="quantity">Количество:</label>
+                            <input type="number" class="form-control" id="quantity" name="quantity" min="1" value="1"
+                                required>
+                        </div>
+                        <div class="form-group">
+                            <label for="totalPrice">Стоимость:</label>
+                            <p id="totalPrice"></p>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Оформить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <script>
         document.addEventListener("DOMContentLoaded", function () {
             fetch('load_images.php')
@@ -294,6 +339,74 @@
                 .catch(error => console.error('Ошибка:', error));
         });
     </script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            fetch('load_images.php')
+                .then(response => response.json())
+                .then(data => {
+                    const container = document.getElementById('blocks-container');
+                    data.forEach(item => {
+                        const block = document.createElement('div');
+                        block.className = 'block';
+                        block.innerHTML = `
+<img src="images/Flowers/${item.image}" alt="${item.name}">
+<p>Название: ${item.name}<br>
+Описание: ${item.description}<br>
+Цена: ${item.price}<br></p>
+<button class="add-to-cart" data-id="${item.id}" data-name="${item.name}" data-description="${item.description}" data-price="${item.price}" data-image="${item.image}">
+<img src="images/cart.png" alt="Добавить в корзину">
+</button>`;
+                        container.appendChild(block);
+                    });
+
+                    // Обработчик клика по кнопке "Добавить в корзину"
+                    document.querySelectorAll('.add-to-cart').forEach(button => {
+                        button.addEventListener('click', function () {
+                            const productId = this.getAttribute('data-id');
+                            const productName = this.getAttribute('data-name');
+                            const productDescription = this.getAttribute('data-description');
+                            const productPrice = this.getAttribute('data-price');
+                            const productImage = this.getAttribute('data-image');
+
+                            document.getElementById('productImage').src = `images/Flowers/${productImage}`;
+                            document.getElementById('productName').textContent = productName;
+                            document.getElementById('productDescription').textContent = productDescription;
+                            document.getElementById('productPrice').textContent = productPrice;
+                            document.getElementById('totalPrice').textContent = productPrice;
+
+                            $('#cartModal').modal('show');
+
+                            document.getElementById('quantity').addEventListener('input', function () {
+                                const quantity = this.value;
+                                const totalPrice = quantity * productPrice;
+                                document.getElementById('totalPrice').textContent = totalPrice;
+                            });
+
+                            document.getElementById('cartForm').addEventListener('submit', function (event) {
+                                event.preventDefault();
+                                const quantity = document.getElementById('quantity').value;
+                                const totalPrice = quantity * productPrice;
+
+                                fetch('add_to_cart.php', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/x-www-form-urlencoded'
+                                    },
+                                    body: `product_id=${productId}&quantity=${quantity}&total_price=${totalPrice}`
+                                })
+                                    .then(response => response.text())
+                                    .then(data => {
+                                        alert(data); // Выводим сообщение об успешном добавлении
+                                        $('#cartModal').modal('hide');
+                                    })
+                                    .catch(error => console.error('Ошибка:', error));
+                            });
+                        });
+                    });
+                });
+        });
+    </script>
+
 </body>
 
 </html>
