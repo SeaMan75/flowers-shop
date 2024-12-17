@@ -1,0 +1,252 @@
+body {
+    background: radial-gradient(circle, #afce89, #8bc34a, #56ab2f);
+    /* Радиальный градиент */
+    margin: 0;
+    /* Убирает отступы */
+    padding: 0;
+    font-family: Arial, sans-serif;
+    /* Устанавливает шрифт по умолчанию */
+    color: #333;
+    /* Цвет текста */
+}
+
+.container {
+    display: flex;
+}
+
+aside {
+    width: 200px;
+    /* Ширина боковой панели */
+    padding: 20px;
+    background-color: #e1edd8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 5px solid #bad496;
+    /* Рамка */
+    box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.3);
+    /* Тень */
+}
+
+.logo {
+    height: 100px;
+    /* Устанавливает высоту логотипа */
+    width: auto;
+    /* Автоматически подстраивает ширину */
+    margin-bottom: 20px;
+    /* Отступ снизу */
+}
+
+#time {
+    font-size: 24px;
+    /* Размер шрифта */
+    line-height: 1.5;
+    /* Межстрочный интервал */
+    color: #0c7526bc;
+    /* Цвет текста */
+    text-shadow: 7px 7px 7px rgba(0, 0, 0, 0.5);
+    /* Тень текста */
+    text-align: center;
+    /* Центрирование текста */
+}
+
+main {
+    flex-grow: 1;
+    /* Основной контент занимает оставшееся пространство */
+    padding: 30px;
+}
+}
+
+.header-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.banner {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 10px;
+    /* Отступ снизу */
+    padding-top: 0;
+    /* Убираем внутренний отступ сверху */
+}
+
+.banner-text {
+    position: relative;
+    animation: moveText 5s infinite alternate;
+    font-size: 80px;
+    /* Размер шрифта */
+    color: #d1eba8;
+    /* Цвет текста */
+    text-shadow: 12px 12px 4px rgba(0, 0, 0, 0.5);
+    /* Тень текста */
+    -webkit-text-stroke: 2px #117f51;
+    /* Окантовка текста */
+    margin: 0;
+    /* Убираем внешние отступы */
+    padding: 0;
+    /* Убираем внутренние отступы */
+    margin-bottom: 20px;
+    /* Отступ снизу для расстояния до меню */
+    display: inline-block;
+    /* Для корректного отображения */
+}
+
+@keyframes moveText {
+    0% {
+        left: 0;
+    }
+
+    100% {
+        left: 300px;
+    }
+}
+
+.menu {
+    border: 5px solid #bad496;
+    /* Рамка */
+    box-shadow: 15px 15px 15px rgba(0, 0, 0, 0.3);
+    background-color: #84c28f;
+    overflow: visible;
+    /* Изменено на visible */
+    flex-grow: 1;
+    padding: 10px;
+    /* Добавлено для увеличения внутреннего отступа */
+}
+
+.menu ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.menu ul li {
+    position: relative;
+}
+
+.menu ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-weight: bold;
+    border-radius: 5px;
+    background: linear-gradient(145deg, #82e084, #03764a);
+    box-shadow: 3px 3px 5px #03622e, -3px -3px 5px #088b11;
+    position: relative;
+}
+
+/* Сдвиг всех кнопок, кроме корзины */
+.menu ul li:not(:last-child) a {
+    margin-top: 10px;
+    /* Сдвиг вниз */
+}
+
+.menu ul li a::after {
+    content: '';
+    border: solid transparent;
+    border-width: 5px 5px 0;
+    border-top-color: white;
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    /* Увеличиваем отступ справа */
+    margin-left: 10px;
+    /* Добавляем отступ слева */
+    transform: translateY(-50%);
+}
+
+.menu ul li a:hover {
+    background-color: #07862d;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropbtn {
+    cursor: pointer;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 600px;
+    /* Увеличено для размещения трех колонок */
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index: 1;
+    border: 1px solid #ccc;
+    top: 100%;
+    /* Добавлено для корректного позиционирования */
+    left: 0;
+    /* Добавлено для корректного позиционирования */
+}
+
+.dropdown-content .column {
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+    box-sizing: border-box;
+    border-right: 1px solid #ccc;
+}
+
+.dropdown-content .column:last-child {
+    border-right: none;
+}
+
+.dropdown-content h3 {
+    margin-top: 0;
+    font-size: 16px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+}
+
+.dropdown-content a {
+    color: black;
+    padding: 8px 16px;
+    text-decoration: none;
+    display: block;
+}
+
+.dropdown-content a:hover {
+    background-color: #f1f1f1;
+}
+
+/* Очистка float */
+.dropdown-content::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Показать меню при наведении */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+.menu ul li.dropdown>a::after {
+    content: '';
+    border: solid transparent;
+    border-width: 5px 5px 0;
+    border-top-color: white;
+    position: absolute;
+    top: 50%;
+    right: 5px;
+    /* Увеличиваем отступ справа */
+    margin-left: 10px;
+    /* Добавляем отступ слева */
+    transform: translateY(-50%);
+}
+
+/* Убираем стрелки для остальных пунктов меню */
+.menu ul li:not(.dropdown)>a::after {
+    display: none;
+}

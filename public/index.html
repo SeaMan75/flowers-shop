@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Интернет-магазин Цветы</title>
+    <link rel="stylesheet" href="style/style.css"> <!-- Подключение файла стилей -->
+</head>
+
+<body>
+    <div class="container">
+        <aside>
+            <div id="current_date_time_block2">
+                <div>
+                    <img src="images/logo.png" alt="Логотип интернет-магазина цветов" class="logo">
+                </div>
+                <div id="time"></div>
+            </div>
+            <script type="text/javascript">
+                function zero_first_format(value) {
+                    if (value < 10) {
+                        value = '0' + value;
+                    }
+                    return value;
+                }
+
+                function date_time() {
+                    var current_datetime = new Date();
+                    var day = zero_first_format(current_datetime.getDate());
+                    var month = zero_first_format(current_datetime.getMonth() + 1);
+                    var year = current_datetime.getFullYear();
+                    var hours = zero_first_format(current_datetime.getHours());
+                    var minutes = zero_first_format(current_datetime.getMinutes());
+                    var seconds = zero_first_format(current_datetime.getSeconds());
+                    return day + "." + month + "." + year + "<br>" + hours + ":" + minutes + ":" + seconds;
+                }
+                setInterval(function () {
+                    document.getElementById('time').innerHTML = date_time();
+                }, 1000);
+            </script>
+        </aside>
+        <main>
+            <header>
+                <div class="header-content">
+                    <div class="banner">
+                        <h1 class="banner-text">Цветы онлайн</h1>
+                    </div>
+
+                    <nav class="menu">
+                        <ul>
+                            <li class="dropdown">
+                                <a href="#">Цветы <span class="triangle"></span></a>
+                                <div class="dropdown-content">
+                                    <div class="column">
+                                        <h3>Букеты с</h3>
+                                        <a href="link1.html">Ссылка 1</a>
+                                        <a href="link2.html">Ссылка 2</a>
+                                        <a href="link3.html">Ссылка 3</a>
+                                        <a href="link4.html">Ссылка 4</a>
+                                        <a href="link5.html">Ссылка 5</a>
+                                        <a href="link6.html">Ссылка 6</a>
+                                        <a href="link7.html">Ссылка 7</a>
+                                        <a href="link8.html">Ссылка 8</a>
+                                        <a href="link9.html">Ссылка 9</a>
+                                        <a href="link10.html">Ссылка 10</a>
+                                    </div>
+                                    <div class="column">
+                                        <h3>Категории</h3>
+                                        <a href="link11.html">Ссылка 11</a>
+                                        <a href="link12.html">Ссылка 12</a>
+                                        <a href="link13.html">Ссылка 13</a>
+                                        <a href="link14.html">Ссылка 14</a>
+                                        <a href="link15.html">Ссылка 15</a>
+                                        <a href="link16.html">Ссылка 16</a>
+                                        <a href="link17.html">Ссылка 17</a>
+                                        <a href="link18.html">Ссылка 18</a>
+                                        <a href="link19.html">Ссылка 19</a>
+                                        <a href="link20.html">Ссылка 20</a>
+                                    </div>
+                                    <div class="column">
+                                        <h3>Букеты кому</h3>
+                                        <a href="link21.html">Ссылка 21</a>
+                                        <a href="link22.html">Ссылка 22</a>
+                                        <a href="link23.html">Ссылка 23</a>
+                                        <a href="link24.html">Ссылка 24</a>
+                                        <a href="link25.html">Ссылка 25</a>
+                                        <a href="link26.html">Ссылка 26</a>
+                                        <a href="link27.html">Ссылка 27</a>
+                                        <a href="link28.html">Ссылка 28</a>
+                                        <a href="link29.html">Ссылка 29</a>
+                                        <a href="link30.html">Ссылка 30</a>
+                                    </div>
+                                </div>
+
+                            </li>
+                            <li class="dropdown">
+                                <a href="#">Повод <span class="triangle"></span></a>
+                                <div class="dropdown-content">
+                                    <div class="column">
+                                        <a href="#">Ссылка 1</a>
+                                        <a href="#">Ссылка 2</a>
+                                    </div>
+                                    <div class="column">
+                                        <a href="#">Ссылка 3</a>
+                                        <a href="#">Ссылка 4</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#">Розы <span class="triangle"></span></a>
+                                <div class="dropdown-content">
+                                    <div class="column">
+                                        <a href="#">Ссылка 1</a>
+                                        <a href="#">Ссылка 2</a>
+                                    </div>
+                                    <div class="column">
+                                        <a href="#">Ссылка 3</a>
+                                        <a href="#">Ссылка 4</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="dropdown">
+                                <a href="#">Подарки <span class="triangle"></span></a>
+                                <div class="dropdown-content">
+                                    <div class="column">
+                                        <a href="#">Ссылка 1</a>
+                                        <a href="#">Ссылка 2</a>
+                                    </div>
+                                    <div class="column">
+                                        <a href="#">Ссылка 3</a>
+                                        <a href="#">Ссылка 4</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li>
+                                <a href="flowers-in-box.html">Цветы в коробке</a>
+                            </li>
+                            <li>
+                                <a href="flowers-in-basket.html">Цветы в корзине</a>
+                            </li>
+                            <li>
+                                <a href="tel:+1234567890"> +7 (495) 123-45-67</a>
+                            </li>
+                            <li>
+                                <a href="cart.html"><img src="images/cart.png" alt="Корзина"
+                                        style="width: 32px; height: 32px;"></a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </header>
+        </main>
+    </div>
+</body>
+
+</html>
