@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $password = $_POST['password'];
 
     // Проверка пользователя в базе данных
-    $sql = "SELECT id, password FROM users WHERE email = ?";
+    $sql = "SELECT user_id, password FROM users WHERE email = ?";
     $stmt = $conn->prepare($sql);
     $stmt->bind_param("s", $email);
     $stmt->execute();
