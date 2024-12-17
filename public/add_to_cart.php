@@ -12,7 +12,7 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
-$sql = "SELECT IFNULL(name, '') AS name, IFNULL(description, '') AS description, IFNULL(price, '') AS price, IFNULL(image, '') AS image FROM flowers";
+$sql = "SELECT id, IFNULL(name, '') AS name, IFNULL(description, '') AS description, IFNULL(price, '') AS price, IFNULL(image, '') AS image FROM flowers";
 $result = $conn->query($sql);
 
 $flowers = array();

@@ -45,7 +45,6 @@
             </script>
         </aside>
 
-
         <main>
             <header>
                 <div class="header-content">
@@ -163,7 +162,7 @@
             </div>
             <div class="auth-form">
                 <h2>Авторизация</h2>
-                <form action="login.php" method="post">
+                <form id="loginForm" action="login.php" method="post">
                     <label for="username">Логин:</label>
                     <input type="text" id="username" name="username" required>
                     <label for="password">Пароль:</label>
@@ -228,10 +227,33 @@
                         const block = document.createElement('div');
                         block.className = 'block';
                         block.innerHTML = `
-<img src="images/Flowers/${item.image}" alt="${item.name}">
-<p>${item.name}</p>
-`;
+    <img src="images/Flowers/${item.image}" alt="${item.name}">
+    <p>Название: ${item.name}<br>
+    Описание: ${item.description}<br>
+    Цена: ${item.price}<br></p>
+    <button class="add-to-cart" data-id="${item.id}">
+    <img src="images/cart.png" alt="Добавить в корзину">
+    </button>`;
                         container.appendChild(block);
+                    });
+
+                    // Добавляем обработчик событий для кнопок "Добавить в корзину"
+                    document.querySelectorAll('.add-to-cart').forEach(button => {
+                        button.addEventListener('click', function () {
+                            const productId = this.getAttribute('data-id');
+                            fetch('add_to_cart.php', {
+                                method: 'POST',
+                                headers: {
+                                    'Content-Type': 'application/x-www-form-urlencoded'
+                                },
+                                body: `id=${productId}`
+                            })
+                                .then(response => response.text())
+                                .then(data => {
+                                    alert(data); // Выводим сообщение об успешном добавлении
+                                })
+                                .catch(error => console.error('Ошибка:', error));
+                        });
                     });
                 });
         });
@@ -255,10 +277,23 @@
         });
     </script>
 
+    <script>
+        document.getElementById('loginForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Предотвращаем стандартное поведение формы
 
+            var formData = new FormData(this);
 
-
-
+            fetch('login.php', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector('.modal-body').innerHTML = '<p>' + data + '</p>';
+                })
+                .catch(error => console.error('Ошибка:', error));
+        });
+    </script>
 </body>
 
 </html>
