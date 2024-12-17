@@ -186,7 +186,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <form action="register.php" method="post">
+                    <form id="registerForm" action="register.php" method="post">
                         <div class="form-group">
                             <label for="first_name">Имя:</label>
                             <input type="text" class="form-control" id="first_name" name="first_name" required>
@@ -236,6 +236,29 @@
                 });
         });
     </script>
+
+    <script>
+        document.getElementById('registerForm').addEventListener('submit', function (event) {
+            event.preventDefault(); // Предотвращаем стандартное поведение формы
+
+            var formData = new FormData(this);
+
+            fetch('register.php', {
+                method: 'POST',
+                body: formData
+            })
+                .then(response => response.text())
+                .then(data => {
+                    document.querySelector('.modal-body').innerHTML = '<p>' + data + '</p>';
+                })
+                .catch(error => console.error('Ошибка:', error));
+        });
+    </script>
+
+
+
+
+
 </body>
 
 </html>
