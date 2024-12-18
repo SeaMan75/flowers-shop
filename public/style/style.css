@@ -10,6 +10,14 @@ body {
     /* Цвет текста */
 }
 
+#loginMessage {
+    color: green;
+    font-weight: bold;
+    text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.5);
+    font-size: 1.5em;
+    text-align: center;
+}
+
 .contact-info {
     text-align: center;
     margin-bottom: 20px;
@@ -160,7 +168,7 @@ main {
     /* Основной контент занимает оставшееся пространство */
     padding: 20px;
 }
-}
+
 
 .header-content {
     display: flex;

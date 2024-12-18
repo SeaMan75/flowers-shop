@@ -145,8 +145,9 @@
                                 <a href="flowers-in-basket.html">Цветы в корзине</a>
                             </li>
                             <li>
-                                <a href="cart.html"><img src="images/cart.png" alt="Корзина"
-                                        style="width: 32px; height: 32px;"></a>
+                                <button id="cartButton" style="background: none; border: none;">
+                                    <img src="images/cart.png" alt="Корзина" style="width: 32px; height: 32px;">
+                                </button>
                             </li>
                         </ul>
                     </nav>
@@ -171,187 +172,163 @@
                 </form>
                 <p>Нет аккаунта? <a href="#" data-toggle="modal" data-target="#registerModal">Регистрация</a></p>
             </div>
+            <div id="loginMessage"></div> <!-- Новый элемент для сообщений -->
         </aside>
-    </div>
-    <!-- Модальное окно для регистрации -->
-    <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="registerModalLabel">Регистрация</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="registerForm" action="register.php" method="post">
-                        <div class="form-group">
-                            <label for="first_name">Имя:</label>
-                            <input type="text" class="form-control" id="first_name" name="first_name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="last_name">Фамилия:</label>
-                            <input type="text" class="form-control" id="last_name" name="last_name" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="reg-email">Email:</label>
-                            <input type="email" class="form-control" id="reg-email" name="email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">Телефон:</label>
-                            <input type="text" class="form-control" id="phone" name="phone">
-                        </div>
-                        <div class="form-group">
-                            <label for="address">Адрес:</label>
-                            <input type="text" class="form-control" id="address" name="address">
-                        </div>
-                        <div class="form-group">
-                            <label for="reg-password">Пароль:</label>
-                            <input type="password" class="form-control" id="reg-password" name="password" required>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Модальное окно для добавления в корзину -->
-    <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="cartModalLabel">Добавить в корзину</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form id="cartForm">
-                        <div class="form-group">
-                            <img id="productImage" src="" alt="Изображение товара" class="img-fluid">
-                        </div>
-                        <div class="form-group">
-                            <label for="productName">Название:</label>
-                            <p id="productName"></p>
-                        </div>
-                        <div class="form-group">
-                            <label for="productDescription">Описание:</label>
-                            <p id="productDescription"></p>
-                        </div>
-                        <div class="form-group">
-                            <label for="productPrice">Цена:</label>
-                            <p id="productPrice"></p>
-                        </div>
-                        <div class="form-group">
-                            <label for="quantity">Количество:</label>
-                            <input type="number" class="form-control" id="quantity" name="quantity" min="1" value="1"
-                                required>
-                        </div>
-                        <div class="form-group">
-                            <label for="totalPrice">Стоимость:</label>
-                            <p id="totalPrice"></p>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Оформить</button>
-                    </form>
+        <!-- Модальное окно для регистрации -->
+        <div class="modal fade" id="registerModal" tabindex="-1" role="dialog" aria-labelledby="registerModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="registerModalLabel">Регистрация</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="registerForm" action="register.php" method="post">
+                            <div class="form-group">
+                                <label for="first_name">Имя:</label>
+                                <input type="text" class="form-control" id="first_name" name="first_name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="last_name">Фамилия:</label>
+                                <input type="text" class="form-control" id="last_name" name="last_name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reg-email">Email:</label>
+                                <input type="email" class="form-control" id="reg-email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="phone">Телефон:</label>
+                                <input type="text" class="form-control" id="phone" name="phone">
+                            </div>
+                            <div class="form-group">
+                                <label for="address">Адрес:</label>
+                                <input type="text" class="form-control" id="address" name="address">
+                            </div>
+                            <div class="form-group">
+                                <label for="reg-password">Пароль:</label>
+                                <input type="password" class="form-control" id="reg-password" name="password" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
+
+        <!-- Модальное окно для добавления в корзину -->
+        <div class="modal fade" id="addToCartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="cartModalLabel">Добавить в корзину</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <form id="cartForm">
+                            <div class="form-group">
+                                <img id="productImage" src="" alt="Изображение товара" class="img-fluid">
+                            </div>
+                            <div class="form-group">
+                                <label for="productName">Название:</label>
+                                <p id="productName"></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="productDescription">Описание:</label>
+                                <p id="productDescription"></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="productPrice">Цена:</label>
+                                <p id="productPrice"></p>
+                            </div>
+                            <div class="form-group">
+                                <label for="quantity">Количество:</label>
+                                <input type="number" class="form-control" id="quantity" name="quantity" min="1"
+                                    value="1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="totalPrice">Стоимость:</label>
+                                <p id="totalPrice"></p>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Оформить</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Модальное окно для корзины -->
+        <div class="modal fade" id="cartModal" tabindex="-1" role="dialog" aria-labelledby="cartModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="cartModalLabel">Корзина</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">×</span>
+                        </button>
+                    </div>
+                    <div class="modal-body" id="cartContent">
+                        <!-- Содержимое корзины будет загружено сюда -->
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                        <!--<button type="button" class="btn btn-primary" id="checkoutButton">Оплатить</button>-->
+                    </div>
+                </div>
+            </div>
+        </div>
 
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            fetch('load_images.php')
-                .then(response => response.json())
-                .then(data => {
-                    const container = document.getElementById('blocks-container');
-                    data.forEach(item => {
-                        const block = document.createElement('div');
-                        block.className = 'block';
-                        block.innerHTML = `
-    <img src="images/Flowers/${item.image}" alt="${item.name}">
-    <p>Название: ${item.name}<br>
-    Описание: ${item.description}<br>
-    Цена: ${item.price}<br></p>
-    <button class="add-to-cart" data-flower-id="${item.flower_id}">
-    <img src="images/cart.png" alt="Добавить в корзину">
-    </button>`;
-                        container.appendChild(block);
-                    });
+        <script>
 
-                    // Добавляем обработчик событий для кнопок "Добавить в корзину"
-                    document.querySelectorAll('.add-to-cart').forEach(button => {
-                        button.addEventListener('click', function () {
-                            const flower_id = this.getAttribute('data-flower-id');
-                            fetch('add_to_cart.php', {
-                                method: 'POST',
-                                headers: {
-                                    'Content-Type': 'application/x-www-form-urlencoded'
-                                },
-                                body: `id=${flower_id}`
-                            })
-                                .then(response => response.text())
-                                .then(data => {
-                                    alert(data); // Выводим сообщение об успешном добавлении
-                                })
-                                .catch(error => console.error('Ошибка:', error));
-                        });
-                    });
-                });
-        });
-    </script>
+            document.getElementById('registerForm').addEventListener('submit', function (event) {
+                event.preventDefault(); // Предотвращаем стандартное поведение формы
 
-    <script>
-        document.getElementById('registerForm').addEventListener('submit', function (event) {
-            event.preventDefault(); // Предотвращаем стандартное поведение формы
+                var formData = new FormData(this);
 
-            var formData = new FormData(this);
-
-            fetch('register.php', {
-                method: 'POST',
-                body: formData
-            })
-                .then(response => response.text())
-                .then(data => {
-                    document.querySelector('.modal-body').innerHTML = '<p>' + data + '</p>';
+                fetch('register.php', {
+                    method: 'POST',
+                    body: formData
                 })
-                .catch(error => console.error('Ошибка:', error));
-        });
-    </script>
+                    .then(response => response.text())
+                    .then(data => {
+                        document.querySelector('.modal-body').innerHTML = '<p>' + data + '</p>';
+                    })
+                    .catch(error => console.error('Ошибка:', error));
+            });
 
-    <script>
-        document.getElementById('loginForm').addEventListener('submit', function (event) {
-            event.preventDefault(); // Предотвращаем стандартное поведение формы
+            document.getElementById('loginForm').addEventListener('submit', function (event) {
+                event.preventDefault(); // Предотвращаем стандартное поведение формы
 
-            var formData = new FormData(this);
+                var formData = new FormData(this);
 
-            fetch('login.php', {
-                method: 'POST',
-                body: formData
-            })
-                .then(response => response.text())
-                .then(data => {
-                    document.querySelector('.modal-body').innerHTML = '<p>' + data + '</p>';
+                fetch('login.php', {
+                    method: 'POST',
+                    body: formData
                 })
-                .catch(error => console.error('Ошибка:', error));
-        });
-    </script>
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('loginMessage').innerHTML = '<p>' + data + '</p>';
+                    })
+                    .catch(error => console.error('Ошибка:', error));
+            });
 
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            fetch('load_images.php')
-                .then(response => response.json())
-                .then(data => {
-                    const container = document.getElementById('blocks-container');
-                    container.innerHTML = ''; // Очистка контейнера
+            document.addEventListener("DOMContentLoaded", function () {
+                fetch('load_images.php')
+                    .then(response => response.json())
+                    .then(data => {
+                        const container = document.getElementById('blocks-container');
+                        container.innerHTML = ''; // Очистка контейнера
 
-                    data.forEach(item => {
-                        const block = document.createElement('div');
-                        block.className = 'block';
-                        block.innerHTML = `
+                        data.forEach(item => {
+                            const block = document.createElement('div');
+                            block.className = 'block';
+                            block.innerHTML = `
 <img src="images/Flowers/${item.image}" alt="${item.name}">
 <p>Название: ${item.name}<br>
 Описание: ${item.description}<br>
@@ -359,56 +336,83 @@
 <button class="add-to-cart" data-flower-id="${item.flower_id}" data-name="${item.name}" data-description="${item.description}" data-price="${item.price}" data-image="${item.image}">
 <img src="images/cart.png" alt="Добавить в корзину">
 </button>`;
-                        container.appendChild(block);
-                    });
-                    // Обработчик клика по кнопке "Добавить в корзину"
-                    document.querySelectorAll('.add-to-cart').forEach(button => {
-                        button.addEventListener('click', function () {
-                            const flowerId = this.getAttribute('data-flower-id');
-                            const productName = this.getAttribute('data-name');
-                            const productDescription = this.getAttribute('data-description');
-                            const productPrice = this.getAttribute('data-price');
-                            const productImage = this.getAttribute('data-image');
+                            container.appendChild(block);
+                        });
+                        // Обработчик клика по кнопке "Добавить в корзину"
+                        document.querySelectorAll('.add-to-cart').forEach(button => {
+                            button.addEventListener('click', function () {
 
-                            document.getElementById('productImage').src = `images/Flowers/${productImage}`;
-                            document.getElementById('productName').textContent = productName;
-                            document.getElementById('productDescription').textContent = productDescription;
-                            document.getElementById('productPrice').textContent = productPrice;
-                            document.getElementById('totalPrice').textContent = productPrice;
-
-                            $('#cartModal').modal('show');
-
-                            document.getElementById('quantity').addEventListener('input', function () {
-                                const quantity = this.value;
-                                const totalPrice = quantity * productPrice;
-                                document.getElementById('totalPrice').textContent = totalPrice;
-                            });
-
-                            document.getElementById('cartForm').addEventListener('submit', function (event) {
-                                event.preventDefault();
-                                const quantity = document.getElementById('quantity').value;
-                                const totalPrice = quantity * productPrice;
-
-                                fetch('add_to_cart.php', {
-                                    method: 'POST',
-                                    headers: {
-                                        'Content-Type': 'application/x-www-form-urlencoded'
-                                    },
-                                    body: `flower_id=${flowerId}&quantity=${quantity}&total_price=${totalPrice}`
-                                })
-                                    .then(response => response.text())
+                                // Проверка, что пользователь вошел в систему
+                                fetch('check_session.php')
+                                    .then(response => response.json())
                                     .then(data => {
-                                        alert(data); // Выводим сообщение об успешном добавлении
-                                        $('#cartModal').modal('hide');
-                                    })
-                                    .catch(error => console.error('Ошибка:', error));
+                                        if (!data.loggedIn) {
+                                            alert('Пожалуйста, войдите в систему, чтобы добавить товар в корзину.');
+                                            return;
+                                        }
+
+                                        const flowerId = this.getAttribute('data-flower-id');
+                                        const productName = this.getAttribute('data-name');
+                                        const productDescription = this.getAttribute('data-description');
+                                        const productPrice = this.getAttribute('data-price');
+                                        const productImage = this.getAttribute('data-image');
+                                        document.getElementById('quantity').value = 1;
+
+                                        document.getElementById('productImage').src = `images/Flowers/${productImage}`;
+                                        document.getElementById('productName').textContent = productName;
+                                        document.getElementById('productDescription').textContent = productDescription;
+                                        document.getElementById('productPrice').textContent = productPrice;
+                                        document.getElementById('totalPrice').textContent = productPrice;
+
+                                        $('#addToCartModal').modal('show');
+
+                                        document.getElementById('quantity').addEventListener('input', function () {
+                                            const quantity = this.value;
+                                            const totalPrice = quantity * productPrice;
+                                            document.getElementById('totalPrice').textContent = totalPrice;
+                                        });
+                                    });
                             });
                         });
                     });
-                });
-        });
-    </script>
+            });
 
+            document.addEventListener('DOMContentLoaded', function () {
+                document.getElementById('cartForm').addEventListener('submit', function (event) {
+                    event.preventDefault();
+                    const flowerId = document.querySelector('.add-to-cart[data-flower-id]').getAttribute('data-flower-id');
+                    const productPrice = document.querySelector('.add-to-cart[data-flower-id]').getAttribute('data-price');
+                    const quantity = document.getElementById('quantity').value;
+                    const totalPrice = quantity * productPrice;
+
+                    fetch('add_to_cart.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        },
+                        body: `flower_id=${flowerId}&quantity=${quantity}&total_price=${totalPrice}`
+                    })
+                        .then(response => response.text())
+                        .then(data => {
+                            alert(data); // Выводим сообщение об успешном добавлении
+                            $('#addToCartModal').modal('hide');
+                        })
+                        .catch(error => console.error('Ошибка:', error));
+                });
+            });
+
+            document.getElementById('cartButton').addEventListener('click', function (event) {
+                event.preventDefault(); // Предотвращаем стандартное поведение кнопки
+
+                fetch('cart.php')
+                    .then(response => response.text())
+                    .then(data => {
+                        document.getElementById('cartContent').innerHTML = data;
+                        $('#cartModal').modal('show'); // Показываем модальное окно
+                    })
+                    .catch(error => console.error('Ошибка:', error));
+            });
+        </script>
 </body>
 
 </html>
